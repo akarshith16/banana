@@ -3,7 +3,7 @@
  * Connects to FastAPI backend (/api/*) with resilient fallback for maximum reliability.
  */
 
-const BASE_URL = '/api';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL || '/api';
 
 export async function fetchHealth() {
   const res = await fetch(`${BASE_URL}/health`);
