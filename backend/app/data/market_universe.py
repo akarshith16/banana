@@ -23,8 +23,8 @@ SOURCE_CLUSTERS = [
         "avg_daily_volume_mt": 480.0,
         "active_buyers_count": 38,
         "ripening_facility_available": True,
-        "base_farmgate_price": 14.20,
-        "variety": "G9 Cavendish",
+        "base_farmgate_price": 15.50,
+        "variety": "Banana - Ripe / Medium (G9 Cavendish)",
         "major_fpos": ["Pulivendula Horti Producer Co.", "Rayalaseema Banana Collective"]
     },
     {
@@ -40,8 +40,8 @@ SOURCE_CLUSTERS = [
         "avg_daily_volume_mt": 520.0,
         "active_buyers_count": 42,
         "ripening_facility_available": False,
-        "base_farmgate_price": 14.40,
-        "variety": "G9 Cavendish",
+        "base_farmgate_price": 15.70,
+        "variety": "Banana - Ripe / Medium (G9 Cavendish)",
         "major_fpos": ["Anantapur Organic Greens FPO", "Tadipatri Agri Cluster"]
     },
     {
@@ -57,8 +57,8 @@ SOURCE_CLUSTERS = [
         "avg_daily_volume_mt": 390.0,
         "active_buyers_count": 29,
         "ripening_facility_available": True,
-        "base_farmgate_price": 14.10,
-        "variety": "G9 Cavendish",
+        "base_farmgate_price": 15.40,
+        "variety": "Banana - Ripe / Medium (G9 Cavendish)",
         "major_fpos": ["Raptadu Banana Growers Federation"]
     },
     {
@@ -74,8 +74,8 @@ SOURCE_CLUSTERS = [
         "avg_daily_volume_mt": 310.0,
         "active_buyers_count": 24,
         "ripening_facility_available": False,
-        "base_farmgate_price": 14.30,
-        "variety": "G9 Cavendish",
+        "base_farmgate_price": 15.60,
+        "variety": "Banana - Ripe / Medium (G9 Cavendish)",
         "major_fpos": ["Dhone Agro Produce"]
     },
     {
@@ -91,8 +91,8 @@ SOURCE_CLUSTERS = [
         "avg_daily_volume_mt": 280.0,
         "active_buyers_count": 20,
         "ripening_facility_available": True,
-        "base_farmgate_price": 15.10,
-        "variety": "Karpura & G9",
+        "base_farmgate_price": 24.00,
+        "variety": "Banana - Bhushavali / Chakkarakeli / Amruthapani / G9",
         "major_fpos": ["Godavari Delta Fruit Guild"]
     }
 ]
@@ -111,8 +111,8 @@ DESTINATION_MARKETS = [
         "lat": 34.0900,
         "lng": 74.7700,
         "avg_daily_volume_mt": 320.0,
-        "typical_spread_rs_kg": 21.50, # Highest realization in India: ~Rs. 36.00/kg (Rs. 540/crate)
-        "freight_open_rs_kg": 5.60, # 10-wheeler normal truck freight via NH44 Jammu-Srinagar highway
+        "typical_spread_rs_kg": 22.00,
+        "freight_open_rs_kg": 5.60,
         "mandi_cess_pct": 1.0,
         "transit_loss_pct": 4.5,
         "active_buyers_count": 65,
@@ -131,7 +131,7 @@ DESTINATION_MARKETS = [
         "lat": 19.0760,
         "lng": 73.0070,
         "avg_daily_volume_mt": 720.0,
-        "typical_spread_rs_kg": 11.80,
+        "typical_spread_rs_kg": 13.00,
         "freight_open_rs_kg": 2.30,
         "mandi_cess_pct": 1.2,
         "transit_loss_pct": 2.4,
@@ -151,7 +151,7 @@ DESTINATION_MARKETS = [
         "lat": 28.7167,
         "lng": 77.1750,
         "avg_daily_volume_mt": 950.0,
-        "typical_spread_rs_kg": 14.50,
+        "typical_spread_rs_kg": 5.00,
         "freight_open_rs_kg": 4.10,
         "mandi_cess_pct": 1.0,
         "transit_loss_pct": 4.2,
@@ -171,7 +171,7 @@ DESTINATION_MARKETS = [
         "lat": 22.5833,
         "lng": 88.3500,
         "avg_daily_volume_mt": 580.0,
-        "typical_spread_rs_kg": 14.80,
+        "typical_spread_rs_kg": 3.00,
         "freight_open_rs_kg": 3.80,
         "mandi_cess_pct": 1.5,
         "transit_loss_pct": 3.8,
@@ -191,7 +191,7 @@ DESTINATION_MARKETS = [
         "lat": 12.9716,
         "lng": 77.5946,
         "avg_daily_volume_mt": 540.0,
-        "typical_spread_rs_kg": 6.80,
+        "typical_spread_rs_kg": 7.00,
         "freight_open_rs_kg": 1.00,
         "mandi_cess_pct": 1.5,
         "transit_loss_pct": 1.1,
@@ -211,13 +211,13 @@ DESTINATION_MARKETS = [
         "lat": 17.3850,
         "lng": 78.4867,
         "avg_daily_volume_mt": 620.0,
-        "typical_spread_rs_kg": 7.60,
+        "typical_spread_rs_kg": -5.00,
         "freight_open_rs_kg": 1.10,
         "mandi_cess_pct": 1.0,
         "transit_loss_pct": 1.4,
         "active_buyers_count": 95,
         "ripening_facility_available": True,
-        "grade_preference": "Grade A & Grade B (Rapid Turnover)"
+        "grade_preference": "Banana - Green FAQ (Lower than AP farmgate in-season)"
     },
     {
         "id": "ahmedabad_naroda",
@@ -231,7 +231,7 @@ DESTINATION_MARKETS = [
         "lat": 23.0800,
         "lng": 72.6500,
         "avg_daily_volume_mt": 490.0,
-        "typical_spread_rs_kg": 12.60,
+        "typical_spread_rs_kg": 10.00,
         "freight_open_rs_kg": 3.20,
         "mandi_cess_pct": 1.0,
         "transit_loss_pct": 3.1,
@@ -251,7 +251,7 @@ DESTINATION_MARKETS = [
         "lat": 26.8100,
         "lng": 75.7400,
         "avg_daily_volume_mt": 410.0,
-        "typical_spread_rs_kg": 13.20,
+        "typical_spread_rs_kg": 11.00,
         "freight_open_rs_kg": 3.70,
         "mandi_cess_pct": 1.6,
         "transit_loss_pct": 3.6,
@@ -273,7 +273,7 @@ DESTINATION_MARKETS = [
         "avg_daily_volume_mt": 350.0,
         "typical_spread_rs_kg": 16.50,
         "freight_open_rs_kg": 2.50,
-        "mandi_cess_pct": 0.0, # Zero cess on export SEZ
+        "mandi_cess_pct": 0.0,
         "transit_loss_pct": 1.5,
         "active_buyers_count": 18,
         "ripening_facility_available": False,

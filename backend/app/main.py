@@ -23,6 +23,8 @@ from app.connectors.agmarknet import (
     reset_spot_overrides
 )
 from app.connectors.csv_connector import parse_and_apply_csv_feed
+from app.connectors.enam import fetch_enam_prices, normalize_enam_record, enam_health
+from app.connectors.media_sources import fetch_all_media_prices, MediaSourceResult
 from app.decision.cost_engine import (
     calculate_single_route_economics, evaluate_all_destinations
 )
@@ -284,8 +286,98 @@ def get_connector_status():
             "mae": model_registry.backtest_metrics["mae"],
             "mape": model_registry.backtest_metrics["mape_pct"],
             "directional_accuracy": model_registry.backtest_metrics["directional_accuracy_pct"]
+        },
+        "enam": {
+            "status": enam_health.last_status,
+            "last_synced": enam_health.last_sync_time.isoformat() if enam_health.last_sync_time else None,
+            "failed_requests": enam_health.failed_requests_count,
+            "agency": enam_health.source_agency
         }
     }
+
+
+@app.get("/api/connectors/enam")
+async def get_enam_prices(
+    commodity: str = Query("Banana", description="Commodity name"),
+    state: Optional[str] = Query(None, description="Filter by state"),
+    market: Optional[str] = Query(None, description="Filter by market")
+):
+    """Fetch live prices from eNAM as a secondary verification source."""
+    records = await fetch_enam_prices(commodity=commodity, state=state, market=market)
+    normalized = [normalize_enam_record(r) for r in records]
+    normalized = [n for n in normalized if n is not None]
+    return {
+        "source": "eNAM",
+        "commodity": commodity,
+        "records": normalized,
+        "count": len(normalized),
+        "status": enam_health.last_status,
+    }
+
+
+@app.get("/api/verification/media-sources/{market_id}")
+async def get_media_source_prices(
+    market_id: str,
+    state: Optional[str] = Query(None, description="State filter")
+):
+    """Fetch banana price for a market from independent media/aggregator sources."""
+    m_info = get_market_by_id(market_id)
+    lookup_state = state or m_info["state"]
+    market_display = m_info["name"].split("(")[0].strip()
+    results = await fetch_all_media_prices(market_display, lookup_state)
+    return {
+        "market_id": market_id,
+        "market_name": m_info["name"],
+        "state": lookup_state,
+        "sources": [
+            {
+                "source": r.source,
+                "modal_price_rs_kg": r.modal_price_rs_kg,
+                "min_price_rs_kg": r.min_price_rs_kg,
+                "max_price_rs_kg": r.max_price_rs_kg,
+                "date": r.date,
+                "confidence": r.confidence,
+            }
+            for r in results
+        ],
+        "count": len(results),
+    }
+
+
+@app.get("/api/verification/consensus/{market_id}")
+async def get_consensus_price(
+    market_id: str,
+    commodity: str = Query("Banana", description="Commodity name"),
+    variety: str = Query("G9 Cavendish", description="Variety")
+):
+    """Compute consensus price across AGMARKNET, eNAM, and media sources."""
+    from app.verification.engine import (
+        _fetch_agmarknet_price_for_market,
+        _fetch_enam_price_for_market,
+        _fetch_media_price_for_market,
+        _compute_consensus_price,
+    )
+
+    sources: List[Dict[str, Any]] = []
+    ag = _fetch_agmarknet_price_for_market(market_id, commodity, variety)
+    if ag:
+        sources.append(ag)
+    en = _fetch_enam_price_for_market(market_id, commodity)
+    if en:
+        sources.append(en)
+    media = _fetch_media_price_for_market(market_id)
+    sources.extend(media)
+
+    consensus = _compute_consensus_price(sources)
+    return {
+        "market_id": market_id,
+        "market_name": get_market_by_id(market_id)["name"],
+        "commodity": commodity,
+        "variety": variety,
+        "sources": sources,
+        "consensus": consensus,
+    }
+
 
 @app.post("/api/admin/manual-spot")
 def manual_spot_entry(
