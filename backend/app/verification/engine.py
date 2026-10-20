@@ -218,6 +218,16 @@ MARKET_MEDIA_LOOKUP: Dict[str, tuple] = {
     "ahmedabad_naroda": ("Naroda", "Gujarat"),
     "ap_pulivendula": ("Pulivendula", "Andhra Pradesh"),
     "ap_ravulapalem": ("Ravulapalem", "Andhra Pradesh"),
+    "chennai_koyambedu": ("Koyambedu", "Tamil Nadu"),
+    "coimbatore_gandhipuram": ("Gandhipuram", "Tamil Nadu"),
+    "theni_rajendranagar": ("Theni", "Tamil Nadu"),
+    "indore_devi_ahilya": ("Devi Ahilya", "Madhya Pradesh"),
+    "bhopal_karond": ("Karond", "Madhya Pradesh"),
+    "kanpur_chakarpur": ("Chakarpur", "Uttar Pradesh"),
+    "lucknow_aminabad": ("Aminabad", "Uttar Pradesh"),
+    "varanasi_pahariya": ("Pahariya", "Uttar Pradesh"),
+    "ludhiana_sabzi_mandi": ("Sabzi Mandi", "Punjab"),
+    "amritsar_vallah": ("Vallah", "Punjab"),
 }
 
 
